@@ -23,67 +23,12 @@ describe "editing recipes" do
 
     # Are there all ingredients listed in the form with
     # the ingredient name as a label and an associated checkbox?
-    it "should display all the existing ingredients" do
-      Ingredient.create(name: 'Paprika')
-      Ingredient.create(name: 'Clove')
-      Ingredient.create(name: 'Ginger')
-      Ingredient.create(name: 'Cider')
-
-      visit edit_recipe_path(@recipe)
-
-      expect(page).to have_css("input[type=\"checkbox\"]", :count => 4)
-
-      expect(page).to have_content('Paprika')
-      expect(page).to have_content('Clove')
-      expect(page).to have_content('Ginger')
-      expect(page).to have_content('Cider')
-    end
+    
 
     # Are all the ingredients added to the recipe?
     # HINT: You need to use checkboxes. Each checkbox should have a CORRECTLY
     #       implemented HTML label
     #       (i.e. clicking on the <label> checks/unchecks the box).
-    it "should be able to add ingredients" do
-      Ingredient.create(name: 'Paprika')
-      Ingredient.create(name: 'Clove')
-      Ingredient.create(name: 'Ginger')
-      Ingredient.create(name: 'Cider')
-
-      visit edit_recipe_path(@recipe)
-
-      check('Paprika')
-      check('Clove')
-      check('Ginger')
-      check('Cider')
-
-      click_button('Update Recipe')
-
-      expect(@recipe.ingredients.count).to eq(4)
-    end
-
-
-    # Are all the ingredients removed from the recipe?
-    # HINT: You need to use checkboxes. Each checkbox should have a CORRECTLY
-    #       implemented HTML label
-    #       (i.e. clicking on the <label> checks/unchecks the box).
-    it "should be able to remove ingredients" do
-      @recipe.ingredients.create(name: 'Paprika')
-      @recipe.ingredients.create(name: 'Clove')
-      @recipe.ingredients.create(name: 'Ginger')
-      @recipe.ingredients.create(name: 'Cider')
-
-      expect(@recipe.ingredients.count).to eq(4)
-
-      visit edit_recipe_path(@recipe)
-
-      uncheck('Paprika')
-      uncheck('Clove')
-      uncheck('Ginger')
-      uncheck('Cider')
-
-      click_button('Update Recipe')
-
-      expect(@recipe.ingredients.count).to eq(0)
-    end
+    
   end
 end
